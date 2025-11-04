@@ -1,6 +1,6 @@
 <script>
 (function(){
-  // Active nav by current file name
+  // Highlight current nav item based on file name
   const links = document.querySelectorAll('.navlinks a');
   const here = location.pathname.split('/').pop() || 'index.html';
   links.forEach(a=>{
@@ -13,3 +13,4 @@
   const y = document.getElementById('year'); if(y){ y.textContent = new Date().getFullYear(); }
 })();
 </script>
+
