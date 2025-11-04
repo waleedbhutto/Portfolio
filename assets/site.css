@@ -18,15 +18,48 @@ a:hover{color:#fff;text-decoration:underline}
 .container{max-width:1100px;margin:0 auto;padding:0 20px}
 
 /* Header / nav */
-header{position:sticky;top:0;z-index:50;background:linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.6));backdrop-filter: blur(8px);border-bottom:1px solid rgba(255,255,255,.06)}
+header{
+  position:sticky; top:0; z-index:50;
+  background:linear-gradient(180deg, rgba(11,18,32,.9), rgba(11,18,32,.6));
+  backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+@supports not (backdrop-filter: blur(8px)){
+  header{ background:rgba(11,18,32,.95); } /* fallback */
+}
 nav{display:flex;align-items:center;gap:18px;justify-content:space-between;padding:12px 0}
-.brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.2px}
-.brand .dot{width:12px;height:12px;border-radius:999px;background:var(--primary);box-shadow:0 0 0 4px rgba(31,120,180,.25)}
-.navlinks a{margin:0 10px;font-weight:600;color:var(--muted)}
-.navlinks a.active,.navlinks a:hover{color:#fff}
-.btn{display:inline-block;padding:10px 14px;border-radius:999px;background:var(--primary);color:#fff;font-weight:700;border:1px solid rgba(255,255,255,.1);box-shadow:var(--shadow)}
-.btn.secondary{background:transparent;border-color:rgba(255,255,255,.2);color:#fff}
-.btn:hover{filter:brightness(1.1)}
+
+/* Brand = Home button */
+.brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight:800; letter-spacing:.2px;
+  color:var(--text); text-decoration:none;
+  padding:6px 8px; border-radius:10px; /* bigger hit area */
+}
+.brand:hover{ filter:brightness(1.06); text-decoration:none; }
+.brand:focus-visible{ outline:2px solid var(--soft); outline-offset:4px; }
+
+/* Use favicon as brandmark */
+.brandmark{
+  width:18px; height:18px; object-fit:cover;
+  border-radius:4px; box-shadow:0 0 0 2px rgba(31,120,180,.25);
+  /* no margin-right needed because .brand uses gap */
+}
+
+/* Old blue dot — keep hidden just in case */
+.brand .dot{ display:none !important; }
+
+.navlinks a{ margin:0 10px; font-weight:600; color:var(--muted); text-decoration:none; }
+.navlinks a.active, .navlinks a:hover{ color:#fff; }
+.navlinks a:focus-visible, .btn:focus-visible{ outline:2px solid var(--soft); outline-offset:4px; border-radius:10px; }
+
+.btn{
+  display:inline-block; padding:10px 14px; border-radius:999px;
+  background:var(--primary); color:#fff; font-weight:700;
+  border:1px solid rgba(255,255,255,.1); box-shadow:var(--shadow);
+}
+.btn.secondary{ background:transparent; border-color:rgba(255,255,255,.2); color:#fff; }
+.btn:hover{ filter:brightness(1.1); }
 
 /* Layout & cards */
 .hero{padding:44px 0 24px;border-bottom:1px solid rgba(255,255,255,.06);background:
@@ -57,9 +90,7 @@ h1{font-size:36px;line-height:1.15;margin:14px 0 10px}
 .social a{margin-right:14px;position:relative;z-index:10}
 .twocol{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .avatar{width:100%;max-width:160px;border-radius:999px;display:block;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.12);margin:0 auto}
-/* Hide the blue brand dot globally */
-.brand .dot{ display:none !important; }
-.brandmark{ width:16px; height:16px; object-fit:cover; margin-right:8px; border-radius:4px; vertical-align:-2px; }
+
 @media (max-width: 900px){
   .hero .top{grid-template-columns:1fr}
   .grid.cols-3,.grid.cols-2,.twocol{grid-template-columns:1fr}
